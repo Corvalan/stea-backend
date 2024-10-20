@@ -1,13 +1,14 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'tsconfig.json',
+    project: './tsconfig.json',
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  plugins: ['@typescript-eslint', 'jest'],
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
     'plugin:prettier/recommended',
   ],
   root: true,
@@ -15,13 +16,11 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignores: ['dist/', 'node_modules/'],  // Ignore dist/ and node_modules
+  ignorePatterns: ['dist/', 'node_modules/'], // Specify directories to ignore
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',  // Disable rule for require()
-    'no-undef': 'off',  // Disable no-undef for CommonJS exports
+    // Add custom ESLint rules here
+    'no-cond-assign': ['error', 'always'],
+    '@typescript-eslint/no-var-requires': 'off',
+    // Add more rules as needed
   },
 };
